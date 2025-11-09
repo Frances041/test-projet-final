@@ -5,7 +5,7 @@ import { readDB, writeDB } from "../utils/fileManager";
 
 export const getAllProjects = (_req: Request, res: Response) => {
   const projects = readDB();
-  return res.json(projects);
+  return res.status(200).json(projects);
 };
 
 export const createProject = (req: Request, res: Response) => {
