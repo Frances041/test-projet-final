@@ -1,0 +1,28 @@
+name: LLM Review
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+    branches: [develop]
+
+jobs:
+  llm-review:
+    runs-on: ubuntu-latest
+    steps:
+      - name:  Checkout code
+        uses: actions/checkout@v4
+
+      - name:  Get Pull Request Diff
+        id: diff
+        run: |
+          git fetch origin develop
+          git diff origin/develop...HEAD > diff.txt
+          head -n 20 diff.txt
+
+      - name:  Simulated Gemini Review
+        run: |
+          echo "=== Gemini LLM Review Simulation ==="
+          echo "Analyse du code modifié..."
+          echo "? Pas de failles critiques."
+          echo "?? Suggestion : ajouter plus de tests unitaires."
+          echo "=== Fin de l'analyse ==="

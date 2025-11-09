@@ -1,4 +1,3 @@
-import express from "express";
 import projectsRouter from "./routes/projects";
 import app from "./app";
 
