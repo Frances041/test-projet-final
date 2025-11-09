@@ -16,6 +16,17 @@ export const getProjectById = (req: Request, res: Response) => {
   res.json(project);
 };
 
+export const updateProjectGrade = (req: Request, res: Response) => {
+  const id = Number(req.params.id);
+  const grade = Number(req.body.grade);
+  const projects = readDB();
+  const project = projects.find((p) => p.id === id);
+  if (!project) return res.status(404).json({ message: "Projet non trouvé" });
+  project.grade = grade;
+  writeDB(projects);
+  res.json(project);
+};
+
 export const createProject = (req: Request, res: Response) => {
   const validation = ProjectSchema.safeParse(req.body);
 
