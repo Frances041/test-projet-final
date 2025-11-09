@@ -8,6 +8,14 @@ export const getAllProjects = (_req: Request, res: Response) => {
   return res.status(200).json(projects);
 };
 
+export const getProjectById = (req: Request, res: Response) => {
+  const id = Number(req.params.id);
+  const projects = readDB();
+  const project = projects.find((p) => p.id === id);
+  if (!project) return res.status(404).json({ message: "Projet non trouvé" });
+  res.json(project);
+};
+
 export const createProject = (req: Request, res: Response) => {
   const validation = ProjectSchema.safeParse(req.body);
 
