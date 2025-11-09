@@ -1,10 +1,11 @@
-import express from "express";
 import projectsRouter from "./routes/projects";
+import app from "./app";
 
-const app = express();
 const PORT = 3000;
 
-app.use(express.json());
+app.listen(PORT, () => {
+  console.log(`? Serveur lancé sur http://localhost:${PORT}`);
+});
 app.use("/projects", projectsRouter);
 
 app.get("/", (_, res) => {
