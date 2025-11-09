@@ -37,6 +37,15 @@ export const deleteProject = (req: Request, res: Response) => {
   res.status(204).send();
 };
 
+export const getByCourse = (req: Request, res: Response) => {
+  const course = req.params.courseName.toLowerCase();
+  const projects = readDB();
+  const filtered = projects.filter(
+    (p) => p.course && p.course.toLowerCase() === course,
+  );
+  res.json(filtered);
+};
+
 export const createProject = (req: Request, res: Response) => {
   const validation = ProjectSchema.safeParse(req.body);
 
